@@ -58,7 +58,7 @@ private static final String FALLBACK_ID_WELCOME = "Hola";
         //given
         var mockRepository = new LangRepository() {
             @Override
-            Optional<Lang> findById(Long id) {
+            Optional<Lang> findById(Integer id) {
                 return Optional.empty();
             }
         };
@@ -73,7 +73,7 @@ private static final String FALLBACK_ID_WELCOME = "Hola";
     private LangRepository fallbackLangIdRepository() {
         return new LangRepository() {
             @Override
-            Optional<Lang> findById(Long id) {
+            Optional<Lang> findById(Integer id) {
                 if (id.equals(HelloService.FALLBACK_LANG.getId())) {
                     return Optional.of(new Lang(null, FALLBACK_ID_WELCOME, null));
                 }
@@ -85,7 +85,7 @@ private static final String FALLBACK_ID_WELCOME = "Hola";
     private LangRepository alwaysReturningHelloRepository() {
         return new LangRepository() {
             @Override
-            Optional<Lang> findById(Long id) {
+            Optional<Lang> findById(Integer id) {
                 return Optional.of(new Lang(null, WELCOME, null));
             }
         };
